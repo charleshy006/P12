@@ -1,0 +1,29 @@
+{
+  "name": "pomelo-server",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "@telegram-apps/init-data-node": "^1.0.4",
+    "@ton/core": "^0.60.1",
+    "async": "^3.2.4",
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "mongoose": "^6.10.0",
+    "node-cron": "^3.0.3",
+    "node-telegram-bot-api": "^0.66.0",
+    "pomelo": "2.2.x",
+    "pomelo-http-plugin": "^0.0.25",
+    "prototype": "^0.0.5",
+    "redis": "^4.7.0",
+    "underscore": "^1.13.7",
+    "web3": "^4.16.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

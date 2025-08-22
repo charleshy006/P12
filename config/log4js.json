@@ -1,0 +1,23 @@
+{
+  "appenders": [
+    {
+      "type": "console"
+    },
+    {
+      "type": "file",
+      "filename": "${opts:base}/logs/GameLogs.log",
+      "maxLogSize": 5485768,
+      "backups": 25
+    }
+  ],
+
+  "levels": {
+    "pomelo-admin" : "ERROR",
+
+    "pomelo" : "ERROR"
+  },
+
+  "replaceConsole": true,
+
+  "lineDebug": false
+}
