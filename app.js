@@ -2,8 +2,8 @@ let pomelo = require('pomelo');
 let fs = require("fs");
 let InitServer = require("./app/domain/InitServer");
 const Constants = require("pomelo/lib/util/constants");  // 引入 CORS 中间件
-const env = Constants.RESERVED.ENV_DEV;//测试服
-// const env = Constants.RESERVED.ENV_PRO;//正式服
+// const env = Constants.RESERVED.ENV_DEV;//测试服
+const env = Constants.RESERVED.ENV_PRO;//正式服
 
 /**
  * Init app for client.
