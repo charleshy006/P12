@@ -108,29 +108,11 @@ handler.Sign_In = async function(msg, session, next) {
         } else if (t_itemid === 3) {
             redis_data.power += add_num;
         } else {
-            redis_data.toolData[t_itemid]["c"] += add_num;
         }
     }
 
 
-
-    let g_n = gift_info.gift_num;
-    if (redis_data.isNFTVip) {
-        console.info("isNFTVip 触发双倍 ")
-
-        g_n *= 2;
-    }
-
-    if (gift_info.gift_tp === 4) {
-        console.info("签到积分 + " + g_n)
-
-        redis_data.score += g_n;
-    }
-
-    retDatas.extraData.gift_list.push({
-        gift_id : gift_info.gift_tp,
-        gift_number : gift_info.gift_num,
-    })
+    
 
     let ret = await app.RedisClient.set_many_hash(session.uid, redis_data);//@redis 赋值 and 返回
     if (ret === true) {
