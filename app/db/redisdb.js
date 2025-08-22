@@ -93,45 +93,22 @@ const initUser = {//16
     last_hand_up_time: app.UserDB.ToUTCData(Date.now()),
     last_power_time: app.UserDB.ToUTCData(Date.now()),
     invite_number:0,
-
-    power:20, 	//体力
-    maxPower: 20,	//最大体力
-    gold:0,		//金币
-    accumulate_u:0,		//累积
-    diamond:0,		//钻石
-    score:0,	// 积分
-    day: 1,	//签到第几天
+    day: 1,    //签到第几天
     
-    saodangcount:5,	//免费扫荡次数（第二天重置） 普通/vip每天 3次 
-    addPowerTime:5,		//增加体力次数（第二天重置） 普通/vip每天 5次
-    videoAddPowerTime:1,	//权益增加体力次数（第二天重置）【VIP】每天 1次 
-    todayResetCount: 20,		//商城的刷新次数 （第二天重置） 【VIP】每天 20次 
-    box1BuyCount: 1,		//普通礼盒权益开打次数（第二天重置） 【VIP】每天 1次 
-    box2BuyCount: 1,		//精致礼盒权益打开次数（第二天重置）【VIP】每天 1次 
-    videoBuyGoldCount: 1,		//权益获得金币次数 （第二天重置）【VIP】每天 1次 
-    todayBuyDiamondCount: 1,	//权益获得钻石次数 （第二天重置）【VIP】每天 1次 
-    box1BuyTotalCount: 1,		//普通礼盒打开总次数
-    box2BuyTotalCount: 1,		//精致礼盒打开总次数
-
-    boxExp: 0,		//宝箱经验		（由礼盒打开的次数，普通的增加20，精致的增加150）
-    boxLevel: 1,	//宝箱等级
-    level: 1,	//等级 最大30 
-    levelWave: 0,	//第几波 最大15
-    dayScoreNum: 0,	//每日任务 积分总和
-    levelBoxData:{//关卡的宝箱
-        1:[0,0,0],
-    },
     
-    payfirst: [1,0,0,0,0,0],	//第一次购买 第一档第二档没有首次购买奖励
-    dayBoxData: app.Configs.config_box_data,//每日任务 宝箱奖励
-    roleData: app.Configs.config_role_data,//角色 配置
-    dailyTask: app.Configs.config_daily_task,//每日任务 配置
-    toolData: app.Configs.config_equip_save_data,//pos 位置（0，1，2，3，4，5，6，7）
-    inviteTotalList: app.Configs.config_invite_info,
-    task_infos: app.Configs.config_task_info,
-
-    shopDailyData: app.UserDB.getTodayShopArray(),
-
+    game_scre_lishi:0,  //历史最高得分
+    game_gold:0,  //游戏金币
+    game_medal:0,  //游戏奖章 用于购买宠物
+    score:0,  //玩家当前分数
+    Level:1,  //玩家打到了多少关
+    skill_1:3,  //技能1数量 ..普通导弹
+    skill_2:4,  //技能2数量 ..寒冰导弹
+    hedan:3,  //核弹
+    shield: 1,		//防护力
+    power:1,  //攻击力
+    pet:'',// 使用的僚机 ""为无 "pet_1"为有 1,2,3,4,5
+    planeName:app.Configs.config_planeName,
+    petName:app.Configs.config_petName,
 };
 
 // const initRoom = {//16
@@ -343,7 +320,9 @@ exports.checkRedisInit = async function(user){
 let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_TO_REDIS
     if (value !== undefined && value !== null) {
         if (key === "user_id" || //2
-            key === "invite_id" 
+            key === "invite_id" ||
+            
+            key === "pet" 
              ) {//[string]
             if (type === "REDIS_TO_DB") {
                 return value.toString();
@@ -351,33 +330,27 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
                 return value.toString();
             }
         } else if (
-            key === "score" || //23
-            key === "level" || 
-            key === "levelWave" || 
-            key === "dayScoreNum" || 
+           
+            key === "day" ||
             key === "invite_number" ||
             key === "last_login_time" ||
             key === "last_hand_up_time" ||
             key === "last_power_time" ||
-            key === "power" ||
-            key === "maxPower" ||
-            key === "accumulate_u" ||
-            key === "gold" ||
-            key === "diamond" ||
-            key === "addPowerTime" ||
-            key === "videoAddPowerTime" ||
-            key === "day" ||
-            key === "saodangcount" ||
-            key === "todayResetCount" ||
-            key === "boxExp" ||
-            key === "boxLevel" ||
-            key === "box1BuyCount" ||
-            key === "box2BuyCount" ||
-            key === "box1BuyTotalCount" ||
-            key === "box2BuyTotalCount" ||
-            key === "videoBuyGoldCount" ||
-            key === "todayBuyDiamondCount" ||
-            key === "current_time") {// [number]·
+            key === "current_time"||
+            
+            key === "game_scre_lishi"||
+            key === "game_gold"||
+            key === "game_medal"||
+            key === "score"||
+            key === "Level"||
+            key === "skill_1"||
+            key === "skill_2"||
+            key === "hedan"||
+            key === "shield"||
+            key === "power"
+
+
+            ) {// [number]·
             if (type === "REDIS_TO_DB") {
                 return Number(value);
             } else if (type === "DB_TO_REDIS") {
@@ -392,15 +365,8 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
             } else if (type === "DB_TO_REDIS") {
                 return value.toString();
             }
-        } else if (key === "payfirst" || //5
-            key === "inviteTotalList" ||
-            key === "levelBoxData" ||
-            key === "dayBoxData" ||
-            key === "roleData" ||
-            key === "dailyTask" ||
-            key === "toolData" ||
-            key === "shopDailyData" ||
-            key === "task_infos" ) {// [array]
+        } else if (key === "planeName" || //5
+            key === "petName" ) {// [array]
             if (type === "REDIS_TO_DB") {
                 return JSON.parse(value);
             } else if (type === "DB_TO_REDIS") {

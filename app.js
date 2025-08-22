@@ -2,8 +2,8 @@ let pomelo = require('pomelo');
 let fs = require("fs");
 let InitServer = require("./app/domain/InitServer");
 const Constants = require("pomelo/lib/util/constants");  // 引入 CORS 中间件
-// const env = Constants.RESERVED.ENV_DEV;//测试服
-const env = Constants.RESERVED.ENV_PRO;//正式服
+const env = Constants.RESERVED.ENV_DEV;//测试服
+// const env = Constants.RESERVED.ENV_PRO;//正式服
 
 /**
  * Init app for client.
@@ -22,12 +22,12 @@ if (app.get('server_status') === Constants.RESERVED.ENV_DEV) {
             heartbeat : 30,
             useDict : true,
             useProtobuf : false,
-            //这个ssl就是增加的部分。
-            ssl: {
-                type: 'wss',
-                key: fs.readFileSync('/etc/nginx/cert/ton-games.net.key'),
-                cert: fs.readFileSync('/etc/nginx/cert/ton-games.net.pem')
-            },
+            // //这个ssl就是增加的部分。
+            // ssl: {
+            //     type: 'wss',
+            //     key: fs.readFileSync('/etc/nginx/cert/ton-games.net.key'),
+            //     cert: fs.readFileSync('/etc/nginx/cert/ton-games.net.pem')
+            // },
         });
         // let  Level= { 
         //   1:{"ispass": true, "nowboshu": 1, "awardjilu": {}, "level": 1, "maxboshu": 10},
@@ -78,8 +78,8 @@ if (app.get('server_status') === Constants.RESERVED.ENV_DEV) {
             // 这个ssl就是增加的部分。
             ssl: {
                 type: 'wss',
-                key: fs.readFileSync('/etc/letsencrypt/live/ton-games.net/privkey.pem'),  // 私钥
-                cert: fs.readFileSync('/etc/letsencrypt/live/ton-games.net/fullchain.pem')  // 证书
+                key: fs.readFileSync('/etc/letsencrypt/live/coinop.club/privkey.pem'),  // 私钥
+                cert: fs.readFileSync('/etc/letsencrypt/live/coinop.club/fullchain.pem')  // 证书
                 // key: fs.readFileSync('../shared/server.key'),
                 // cert: fs.readFileSync('../shared/server.crt')
             },

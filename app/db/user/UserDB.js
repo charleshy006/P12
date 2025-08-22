@@ -477,101 +477,6 @@ exports.checkOneDay = function(currentTime, lastLoginTime) {
 }
 
 
-function generateRandomItem(type) { // 固定值（priceType与传入的type保持一致）
-    const itemId = 8;
-    const buyTimes = 1;
-    const priceType = type; // priceType等于传入的type
-// 1. 随机品质 (权重 [50,40,10] 对应 quality 1,2,3)
-    const qualityWeights = [50, 40, 10];
-    const totalQualityWeight = qualityWeights.reduce ((a, b) => a + b, 0);
-    let random = Math.random () * totalQualityWeight;
-    let quality;
-    if (random < qualityWeights[0]) {
-        quality = 1;
-    } else if (random < qualityWeights[0] + qualityWeights[1]) {
-        quality = 2;
-    } else {
-        quality = 3;
-    }
-// 2. 根据品质随机数量
-    let count;
-    switch (quality) {
-        case 1:
-            count = [5, 10, 20][Math.floor (Math.random () * 3)];
-            break;
-        case 2:
-            count = [3, 5][Math.floor (Math.random () * 2)];
-            break;
-        case 3:
-            count = 1;
-            break;
-    }
-// 3. 根据品质随机 toolId
-    let toolId;
-    switch (quality) {
-        case 1:
-            toolId = [1001, 1002, 1003, 1008][Math.floor (Math.random () * 4)];
-            break;
-        case 2:
-            toolId = [1004, 1005, 1006, 1010][Math.floor (Math.random () * 4)];
-            break;
-        case 3:
-            toolId = [1007, 1009, 1011, 1012][Math.floor (Math.random () * 4)];
-            break;
-    }
-// 4. 随机折扣 (权重 [5,10,20,65] 对应折扣 [5,7,9,10])
-    const discountWeights = [5, 10, 20, 65];
-    const totalDiscountWeight = discountWeights.reduce ((a, b) => a + b, 0);
-    random = Math.random () * totalDiscountWeight;
-    let discount;
-    if (random < discountWeights[0]) {
-        discount = 5;
-    } else if (random < discountWeights[0] + discountWeights[1]) {
-        discount = 7;
-    } else if (random < discountWeights[0] + discountWeights[1] + discountWeights[2]) {
-        discount = 9;
-    } else {
-        discount = 10;
-    }
-// 5. 根据 priceType（即 type）选择价格池并计算价格
-    let basePrices;
-    if (priceType === 1) {
-        basePrices = [5, 30, 180]; //type=2 时的价格池
-    } else if (priceType === 2) {
-        basePrices = [1.2, 7, 54]; //type=3 时的价格池
-    } else {
-// 可选：处理未定义的 type，这里默认使用 type=2 的价格池
-        basePrices = [5, 30, 180];
-    }
-    const basePrice = basePrices [quality - 1];
-    const price = basePrice * count * (discount / 10);
-// 返回生成的对象
-    return {
-        itemId,
-        count,
-        toolId,
-        buyTimes,
-        priceType,
-        price: Number (price.toFixed (2)), // 保留两位小数（处理 type=3 的小数价格）
-        discount
-    };
-}
-
-exports.getTodayShopArray = function() {
-    console.info("getTodayShopArray")
-    let temp_type = [999, 1,1,2,2,2]
-    let temp_list = {};
-
-    for (let i = 0; i < temp_type.length; i ++) {
-        if (temp_type[i] === 999) {
-            temp_list[i+1] = { "itemId": 3, "count": 100, "toolId": -1, "buyTimes": 1, "priceType": 999, "price": 100, "discount": 10 }
-        } else {
-            temp_list[i+1] = generateRandomItem(temp_type[i]);
-        }
-    }
-
-    return temp_list;
-}
 
 
 //重置数据
@@ -587,16 +492,6 @@ exports.resetInfo = function(user){
     if (user.day > 7) {
         user.day = 1;
     }
-
-    user.saodangcount=5;	//免费扫荡次数（第二天重置） 普通/vip每天 3次 
-    user.addPowerTime=5;		//增加体力次数（第二天重置） 普通/vip每天 5次
-    user.videoAddPowerTime=1;	//权益增加体力次数（第二天重置）【VIP】每天 1次 
-    user.todayResetCount=20;		//商城的刷新次数 （第二天重置） 【VIP】每天 20次 
-    user.box1BuyCount=1;		//普通礼盒权益开打次数（第二天重置） 【VIP】每天 1次 
-    user.box2BuyCount=1;		//精致礼盒权益打开次数（第二天重置）【VIP】每天 1次 
-    user.videoBuyGoldCount=1;		//权益获得金币次数 （第二天重置）【VIP】每天 1次 
-    user.todayBuyDiamondCount=1;	//权益获得钻石次数 （第二天重置）【VIP】每天 1次 
-    user.shopDailyData = app.UserDB.getTodayShopArray();
 
     return user;
 }
