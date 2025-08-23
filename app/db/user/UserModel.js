@@ -31,6 +31,10 @@ let User = {
     pet:{type: String, default: ""},//使用的僚机 ""为无 "pet_1"为有 1,2,3,4,5
     planeName:{type: Array, default: app.Configs.config_planeName},//等级
     petName:{type: Array, default: app.Configs.config_planeName},//等级
+    config_PlaneInfo:{type: mongoose.Schema.Types.Mixed, default: app.Configs.config_PlaneInfo},//等级
+    config_WeaponInfo:{type: mongoose.Schema.Types.Mixed, default: app.Configs.config_WeaponInfo},//等级
+    config_PetInfo:{type: mongoose.Schema.Types.Mixed, default: app.Configs.config_PetInfo},//等级
+    
 }
 
 const UserSchema = new mongoose.Schema(User, { timestamps: true });

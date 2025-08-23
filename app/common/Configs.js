@@ -29,150 +29,89 @@ exports.LoginTimeOut = (60 * 60) + 100;
 exports.StartServerTime = "2025-05-07 00:00:00.00";
 
 //飞机列表
-exports.config_PlaneInfo = [
-	{
+exports.config_PlaneInfo = {
+	0:{
 		id: 0,
-		name: "Sly Fox",    // 可删
 		url: "player1",
-		title: "Nice Try",  // 可删
 		hp: 5,
-		attack: 1,//攻击力  // 可删
 		price: 0,//价格，
 		emitter: "player1_emitter",
-		emitterStr: "HMG",  // 可删
-		isBuy: true,  // 可删
-		isChoice: true  // 可删
 	},
-	{
+	1:{
 		id: 1,
-		name: "Big Blue",
 		url: "player2",
-		title: "Iron Goliath",
 		hp: 10,
-		attack: 2,//攻击力
 		price: 1200,//价格，
 		emitter: "player2_emitter",
-		emitterStr: "Dual Gatling",
-		isBuy: false,
-		isChoice: false
 	},
-	{
+	2:{
 		id: 2,
-		name: "Celestial Star",
 		url: "player3",
-		title: "Farbulous",
 		hp: 12,
-		attack: 5,//攻击力
 		price: 2900,//价格，
 		emitter: "player3_emitter",
-		emitterStr: "Fireball",
-		isBuy: false,
-		isChoice: false
 	},
-	{
+	3:{
 		id: 3,
-		name: "Reaper",
 		url: "player4",
-		title: "Scythe of Destruction",
 		hp: 18,
-		attack: 8,//攻击力
 		price: 4500,//价格，
 		emitter: "player4_emitter",
-		emitterStr: "Triple Cannon",
-		isBuy: false,
-		isChoice: false
 	},
-	{
+	4:{
 		id: 4,
-		name: "Devourer",
 		url: "player5",
-		title: "Total Annihilation",
 		hp: 20,
-		attack: 10,//攻击力
 		price: 6200,//价格，
 		emitter: "player5_emitter",
-		emitterStr: "Particle Cannon",
-		isBuy: false,
-		isChoice: false
 	},
-];
+};
 
-exports.config_WeaponInfo = [
-	{
+exports.config_WeaponInfo = {
+	1:{
 		id: 1,
-		name: "Basic Missile",  // 可删
-		url: "skill_1",  // 可删
-		title: "Fires one missile at a time", // 可删
 		price: 180,//价格，
 	},
-	{
+	2:{
 		id: 2,
-		name: "Frost Missile",
-		url: "skill_2",
-		title: "Cluster fire, tracks the target",
 		price: 380,//价格，
 	},
-	{
+	3:{
 		id: 3,
-		name: "Defense Boost",
-		url: "shield",
-		title: "Defense +3",
 		price: 800,//价格，
 	},
-	{
+	4:{
 		id: 4,
-		name: "Armor-Piercing",
-		url: "power",
-		title: "Attack +1",
 		price: 1200,//价格，
 	},
-	{
+	5:{
 		id: 5,
-		name: "Nuclear Missile",
-		url: "hedan",
-		title: "Deals devastating damage to all enemies",
 		price: 260,//价格，
 	},
-];
+}
 
-exports.config_PetInfo = [
-	{
+exports.config_PetInfo = {
+	0:{
 		id: 0,
-		name: "Apex Predator",  // 可删
 		url: "pet_1",
-		title: "Equipped with two wingmen to assist in enemy destruction",  // 可删
-		isBuy: false, // 可删
-		isChoice: false,  // 可删
 		price: 500,//价格，
 	},
-	{
+	1:{
 		id: 1,
-		name: "Guardian Vanguard",
 		url: "pet_2",
-		title: "Fires forward and from both wings",
-		isBuy: false,
-		isChoice: false,
 		price: 680,//价格，
 	},
-	{
+	2:{
 		id: 2,
-		name: "H/PJ CIWS",
 		url: "pet_3",
-		title: "Equipped with smart Gatling guns, auto-locks onto targets",
-		isBuy: false,
-		isChoice: false,
 		price: 950,//价格，
 	},
-	{
+	3:{
 		id: 3,
-		name: "Black Angel",
 		url: "pet_4",
-		title: "Fires tracking Shadow Missiles at enemies, and launches healing waves restoring 10% health per second",
-		isBuy: false,
-		isChoice: false,
 		price: 1280,//价格，
 	},
-];
+};
 
 exports.config_petName = [
 	{

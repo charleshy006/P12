@@ -109,6 +109,10 @@ const initUser = {//16
     pet:'',// 使用的僚机 ""为无 "pet_1"为有 1,2,3,4,5
     planeName:app.Configs.config_planeName,
     petName:app.Configs.config_petName,
+    
+    config_PlaneInfo:app.Configs.config_PlaneInfo,
+    config_WeaponInfo:app.Configs.config_WeaponInfo,
+    config_PetInfo:app.Configs.config_PetInfo,
 };
 
 // const initRoom = {//16
@@ -366,6 +370,9 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
                 return value.toString();
             }
         } else if (key === "planeName" || //5
+            key === "config_PlaneInfo" ||
+            key === "config_WeaponInfo" ||
+            key === "config_PetInfo" ||
             key === "petName" ) {// [array]
             if (type === "REDIS_TO_DB") {
                 return JSON.parse(value);

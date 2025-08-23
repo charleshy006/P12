@@ -102,7 +102,7 @@ handler.Sign_In = async function(msg, session, next) {
         })
 
         if (t_itemid === 1) {
-            redis_data.gold += add_num;
+            redis_data.score += add_num;
         } else if (t_itemid === 2) {
             redis_data.diamond += add_num;
         } else if (t_itemid === 3) {
