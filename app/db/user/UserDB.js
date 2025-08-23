@@ -36,9 +36,9 @@ exports.updateOrCreateUser = async function(filter, updateData){
 exports.searchUsers = async function(){
 
     try {
-        const users = await app.UserModel.find({}, 'user_id gold');
+        const users = await app.UserModel.find({}, 'user_id score');
         return (users.filter(user => user && user.user_id!== null && user.user_id!== undefined && user.user_id!== "").map(user => ({
-            score: user.gold ,
+            score: user.score ,
             value: user.user_id.toString(),
         })));
 
