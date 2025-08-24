@@ -488,7 +488,7 @@ handler.Buy_Pet = async function(msg, session, next) {
     let buy_pet = redis_data.config_PetInfo[msg.pet_id];
 
     if (redis_data.game_medal < buy_pet.price) {
-        app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`金币不足!`);
+        app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`勋章不足!`);
         return;
     }
 
