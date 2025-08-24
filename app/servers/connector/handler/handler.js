@@ -23,14 +23,20 @@ handler.Login_Game = async function(msg, session, next) {
             return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Parameter Error!`);
         }
 
-
-        
+        let type = 1;
+        if (msg.type ) {
+            type = msg.type;
+        }
         
         let loginUid = msg.user_id.toString();
-        const web3 = new Web3();
-        if (!web3.utils.isAddress(loginUid)) {
-            return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Address Error!`);
+        
+        if (type === 1) {
+            const web3 = new Web3();
+            if (!web3.utils.isAddress(loginUid)) {
+                return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Address Error!`);
+            }
         }
+
         let sessionService = app.get('sessionService');
 
         // 断线重连判断
