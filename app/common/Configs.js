@@ -122,8 +122,8 @@ exports.config_PetInfo = {
 exports.config_petName = {
 	0:{
 		id: 0,
-		isBuy: true,
-		isChoice: true
+		isBuy: false,
+		isChoice: false
 	},
 	1:{
 		id: 1,
@@ -145,8 +145,8 @@ exports.config_petName = {
 exports.config_planeName = {
 	0:{
 		id: 0,
-		isBuy: false,
-		isChoice: false
+		isBuy: true,
+		isChoice: true
 	},
 	1:{
 		id: 1,
