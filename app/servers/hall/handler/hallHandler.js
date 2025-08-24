@@ -340,7 +340,7 @@ handler.Buy_Weapon = async function(msg, session, next) {
     // 5=>hedan  //核弹 +1
     
     //需要修改的userdata
-    let fields = ['skill_1', 'skill_2', 'shield', 'power', 'hedan', 'game_gold'];
+    let fields = ['skill_1', 'skill_2', 'shield', 'power', 'hedan', 'game_gold', 'config_WeaponInfo'];
     //============1 参数校验 and fields赋值 end ==================
 
     let retDatas = {userData:{},extraData:{}};
@@ -357,6 +357,16 @@ handler.Buy_Weapon = async function(msg, session, next) {
         app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`id 错误!`);
         return;
     }
+    
+    let buy_weapon = redis_data.config_WeaponInfo[msg.weapon_id];
+    
+    if (redis_data.game_gold < buy_weapon.price) {
+        app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`金币不足!`);
+        return;
+    }
+
+    redis_data.game_gold -= buy_weapon.price;
+
 
     if (msg.weapon_id === 1) {
         redis_data.skill_1 += 1;
@@ -370,7 +380,6 @@ handler.Buy_Weapon = async function(msg, session, next) {
         redis_data.hedan += 1;
     }
     
-    redis_data.game_gold -= 100;//???
     //============2 逻辑运算 end ==================
 
     // 更新卡组走保存再发送
@@ -456,7 +465,7 @@ handler.Buy_Pet = async function(msg, session, next) {
     }
 
     //需要修改的userdata
-    let fields = ['petName', 'game_gold', 'pet', 'config_PetInfo'];
+    let fields = ['petName', 'game_medal', 'pet', 'config_PetInfo'];
     //============1 参数校验 and fields赋值 end ==================
 
     let retDatas = {userData:{},extraData:{}};
@@ -478,7 +487,7 @@ handler.Buy_Pet = async function(msg, session, next) {
 
     let buy_pet = redis_data.config_PetInfo[msg.pet_id];
 
-    if (redis_data.game_gold < buy_pet.price) {
+    if (redis_data.game_medal < buy_pet.price) {
         app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`金币不足!`);
         return;
     }
@@ -497,7 +506,7 @@ handler.Buy_Pet = async function(msg, session, next) {
     }
 
     redis_data.pet = redis_data.config_PetInfo[msg.pet_id].url
-    redis_data.game_gold -= buy_pet.price;
+    redis_data.game_medal -= buy_pet.price;
     //============2 逻辑运算 end ==================
 
     // 更新卡组走保存再发送
@@ -632,7 +641,7 @@ handler.Start_Game = async function(msg, session, next) {
     }
 
     //需要修改的userdata
-    let fields = ['power', 'level'];
+    let fields = ['level'];
     //============1 参数校验 and fields赋值 end ==================
 
     let retDatas = {userData:{},extraData:{}};
@@ -641,19 +650,13 @@ handler.Start_Game = async function(msg, session, next) {
         app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`Start_Game, Redis Search Error!`);
         return;
     }
-
-    if (redis_data.power < 5) {
-        app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`体力不支!`);
-        return;
-    }
+    
 
     if (redis_data.level < msg.id) {
         app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`关卡id错误!`);
         return;
     }
-
-    redis_data.power -= 5;
-
+    
     retDatas.extraData = {
     };
 
