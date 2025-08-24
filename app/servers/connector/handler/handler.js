@@ -22,22 +22,18 @@ handler.Login_Game = async function(msg, session, next) {
         if (!msg.user_id ) {
             return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Parameter Error!`);
         }
-
-        console.info("Login_Game type ")
-        console.info(msg.type)
+        
         let type = 1;
         if (msg.type !== undefined) {
             type = msg.type;
-            console.info(type)
         }
         
         let loginUid = msg.user_id.toString();
-        console.info(type)
 
         if (type === 1) {
             const web3 = new Web3();
             if (!web3.utils.isAddress(loginUid)) {
-                return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Address Error!`);
+                return app.NetWork.retClient(next, {}, app.NetWork.Code.Server, `${session.route}, Web3 Address is error !`);
             }
         }
 
