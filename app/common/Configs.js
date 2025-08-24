@@ -28,6 +28,12 @@ exports.LoginTimeOut = (60 * 60) + 100;
 // exports.LoginTimeOut = 10;
 exports.StartServerTime = "2025-05-07 00:00:00.00";
 
+exports.config_Plane = {
+	player_name: "player1",
+	emitter: "player1_emitter",
+	hp: 5
+}
+
 //飞机列表
 exports.config_PlaneInfo = {
 	0:{
@@ -113,56 +119,58 @@ exports.config_PetInfo = {
 	},
 };
 
-exports.config_petName = [
-	{
+exports.config_petName = {
+	0:{
 		id: 0,
 		isBuy: true,
 		isChoice: true
 	},
-	{
+	1:{
 		id: 1,
 		isBuy: false,
 		isChoice: false
 	},
-	{
+	2:{
 		id: 2,
 		isBuy: false,
 		isChoice: false
 	},
-	{
+	3:{
 		id: 3,
 		isBuy: false,
 		isChoice: false
 	}
-];
+};
 
-exports.config_planeName = [
-	{
+exports.config_planeName = {
+	0:{
 		id: 0,
-		isBuy: true,
-		isChoice: true
+		isBuy: false,
+		isChoice: false
 	},
-	{
+	1:{
 		id: 1,
 		isBuy: false,
 		isChoice: false
 	},
-	{
+	2:{
 		id: 2,
 		isBuy: false,
 		isChoice: false
 	},
-	{
+	3:{
 		id: 3,
 		isBuy: false,
 		isChoice: false
 	},
-	{
+	4:{
 		id: 4,
 		isBuy: false,
 		isChoice: false
 	}
-];
+};
+
+
 
 // 1：金币，2：钻石，3：体力，4：积分，5：碎片{quality==>1：绿色，2：蓝色，3：紫色}
 // 1,300 300金币 5,1,40 40个绿色碎片

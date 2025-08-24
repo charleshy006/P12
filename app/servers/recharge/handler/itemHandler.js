@@ -21,7 +21,7 @@ handler.Add_Item_By_Type = async function(msg, session, next) {
 
     
     //需要修改的userdata
-    let fields = ['diamond', 'gold', 'power', 'techP', 'score', 'bag'];
+    let fields = ['diamond', 'gold', 'power', 'techP', 'bag'];
     //============1 参数校验 and fields赋值 end ==================
 
     let retDatas = {userData:{},extraData:{}};
@@ -57,11 +57,6 @@ handler.Add_Item_By_Type = async function(msg, session, next) {
             redis_data.techP += msg.add_items[item_id].item_num
             if (redis_data.techP < 0) {
                 redis_data.techP = 0;
-            }
-        } else if (msg.add_items[item_id].item_id === 501) {
-            redis_data.score += msg.add_items[item_id].item_num
-            if (redis_data.score < 0) {
-                redis_data.score = 0;
             }
         } else {
             equip_array.push(msg.add_items[item_id].item_id);

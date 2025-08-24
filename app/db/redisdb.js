@@ -96,11 +96,10 @@ const initUser = {//16
     day: 1,    //签到第几天
     
     
-    game_scre_lishi:0,  //历史最高得分
+    game_score_lishi:0,  //历史最高得分
     game_gold:0,  //游戏金币
     game_medal:0,  //游戏奖章 用于购买宠物
-    score:0,  //玩家当前分数
-    Level:1,  //玩家打到了多少关
+    level:1,  //玩家打到了多少关
     skill_1:3,  //技能1数量 ..普通导弹
     skill_2:4,  //技能2数量 ..寒冰导弹
     hedan:3,  //核弹
@@ -113,6 +112,7 @@ const initUser = {//16
     config_PlaneInfo:app.Configs.config_PlaneInfo,
     config_WeaponInfo:app.Configs.config_WeaponInfo,
     config_PetInfo:app.Configs.config_PetInfo,
+    plane:app.Configs.config_Plane,
 };
 
 // const initRoom = {//16
@@ -342,11 +342,10 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
             key === "last_power_time" ||
             key === "current_time"||
             
-            key === "game_scre_lishi"||
+            key === "game_score_lishi"||
             key === "game_gold"||
             key === "game_medal"||
-            key === "score"||
-            key === "Level"||
+            key === "level"||
             key === "skill_1"||
             key === "skill_2"||
             key === "hedan"||
@@ -373,6 +372,8 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
             key === "config_PlaneInfo" ||
             key === "config_WeaponInfo" ||
             key === "config_PetInfo" ||
+            key === "config_Plane" ||
+            key === "plane" ||
             key === "petName" ) {// [array]
             if (type === "REDIS_TO_DB") {
                 return JSON.parse(value);
