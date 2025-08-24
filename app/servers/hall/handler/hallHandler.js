@@ -281,10 +281,10 @@ handler.Buy_Plane = async function(msg, session, next) {
 
     let planestatus = redis_data.planeName[msg.plane_id];
 
-    // if (planestatus.isBuy) {
-    //     app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`已经购买!`);
-    //     return;
-    // }
+    if (planestatus.isBuy) {
+        app.NetWork.retClient(next, {}, app.NetWork.Code.Redis,`已经购买!`);
+        return;
+    }
 
     let buy_plane = redis_data.config_PlaneInfo[msg.plane_id];
 
