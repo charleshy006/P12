@@ -94,25 +94,12 @@ const initUser = {//16
     last_power_time: app.UserDB.ToUTCData(Date.now()),
     invite_number:0,
     day: 1,    //签到第几天
-    
-    
-    game_score_lishi:0,  //历史最高得分
+
     game_gold:0,  //游戏金币
-    game_medal:0,  //游戏奖章 用于购买宠物
     level:1,  //玩家打到了多少关
-    skill_1:3,  //技能1数量 ..普通导弹
-    skill_2:4,  //技能2数量 ..寒冰导弹
-    hedan:3,  //核弹
-    shield: 1,		//防护力
-    power:1,  //攻击力
-    pet:'',// 使用的僚机 ""为无 "pet_1"为有 1,2,3,4,5
-    planeName:app.Configs.config_planeName,
-    petName:app.Configs.config_petName,
-    
-    config_PlaneInfo:app.Configs.config_PlaneInfo,
-    config_WeaponInfo:app.Configs.config_WeaponInfo,
-    config_PetInfo:app.Configs.config_PetInfo,
-    plane:app.Configs.config_Plane,
+
+
+   
 };
 
 // const initRoom = {//16
@@ -324,9 +311,10 @@ exports.checkRedisInit = async function(user){
 let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_TO_REDIS
     if (value !== undefined && value !== null) {
         if (key === "user_id" || //2
-            key === "invite_id" ||
             
-            key === "pet" 
+            
+            
+            key === "invite_id"
              ) {//[string]
             if (type === "REDIS_TO_DB") {
                 return value.toString();
@@ -335,25 +323,19 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
             }
         } else if (
            
-            key === "day" ||
+           
             key === "invite_number" ||
             key === "last_login_time" ||
             key === "last_hand_up_time" ||
             key === "last_power_time" ||
             key === "current_time"||
-            
-            key === "game_score_lishi"||
-            key === "game_gold"||
-            key === "game_medal"||
+
+
             key === "level"||
-            key === "skill_1"||
-            key === "skill_2"||
-            key === "hedan"||
-            key === "shield"||
-            key === "power"
+            key === "game_gold"||
 
 
-            ) {// [number]·
+            key === "day" ) {// [number]·
             if (type === "REDIS_TO_DB") {
                 return Number(value);
             } else if (type === "DB_TO_REDIS") {
@@ -361,20 +343,17 @@ let change_value_type = function(key, value, type) { //24  type: REDIS_TO_DB/DB_
             }
         } else if (
             key === "is_sign" || //3
+            
             key === "isInviteStatus" ||
+            
+            
             key === "isNFTVip") {//[boolean]
             if (type === "REDIS_TO_DB") {
                 return (value === 'true');
             } else if (type === "DB_TO_REDIS") {
                 return value.toString();
             }
-        } else if (key === "planeName" || //5
-            key === "config_PlaneInfo" ||
-            key === "config_WeaponInfo" ||
-            key === "config_PetInfo" ||
-            key === "config_Plane" ||
-            key === "plane" ||
-            key === "petName" ) {// [array]
+        } else if (false) {// [array]
             if (type === "REDIS_TO_DB") {
                 return JSON.parse(value);
             } else if (type === "DB_TO_REDIS") {
