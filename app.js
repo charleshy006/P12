@@ -9,7 +9,7 @@ const env = Constants.RESERVED.ENV_PRO;//正式服
  * Init app for client.
  */
 let app = pomelo.createApp();
-app.set('name', 'Fruit_Game');
+app.set('name', 'G3_Game');
 // 加载配置到app对象中
 app.set('env', Constants.RESERVED.ENV_DEV);
 app.set('server_status', env);
