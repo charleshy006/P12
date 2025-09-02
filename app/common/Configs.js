@@ -6,7 +6,7 @@ exports.RedisOptions = {
 	},
 	password: 'Welcome01!' // 这里替换成实际的Redis密码
 };
-exports.Redis_DB = 6;
+exports.Redis_DB = 1;
 exports.RedisFather = {
 	user_id: "1111111111",
 
@@ -16,7 +16,7 @@ exports.RedisFather = {
 
 // ============MONGO CONF  START=================
 // exports.Mongo_URI = "mongodb://127.0.0.1:27017/CK_DB";
-exports.Mongo_URI = "mongodb://mongo_game:Welcome01!@127.0.0.1:6677/DB_6?authSource=admin";
+exports.Mongo_URI = "mongodb://mongo_game:Welcome01!@127.0.0.1:6677/DB_1?authSource=admin";
 // exports.Mongo_URI = "mongodb://mongo_game:Welcome01!@13.229.104.150:6677/DB_6?authSource=admin";
 // exports.Mongo_URI = "mongodb://root:Lovehouse123!@dds-zf8271f3a79232841823-pub.mongodb.kualalumpur.rds.aliyuncs.com:3717,dds-zf8271f3a79232842152-pub.mongodb.kualalumpur.rds.aliyuncs.com:3717/PJ_DB?authSource=admin";
 // ============MONGO CONF  END=================
