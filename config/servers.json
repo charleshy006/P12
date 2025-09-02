@@ -1,24 +1,24 @@
 {
   "development":{
     "connector": [
-      {"id": "connector-server-1", "host": "127.0.0.1", "port": 7607, "clientHost": "127.0.0.1", "clientPort": 8807, "frontend": true}
+      {"id": "connector-server-1", "host": "127.0.0.1", "port": 7608, "clientHost": "127.0.0.1", "clientPort": 8808, "frontend": true}
     ],
     "hall": [
-      {"id": "hall-server-1", "host": "127.0.0.1", "port": 7507, "hall": 1}
+      {"id": "hall-server-1", "host": "127.0.0.1", "port": 7508, "hall": 1}
     ],
     "recharge": [
-      {"id": "recharge-server-1", "host": "127.0.0.1", "port": 7407, "recharge": 2}
+      {"id": "recharge-server-1", "host": "127.0.0.1", "port": 7408, "recharge": 2}
     ]
   },
   "development":{
     "connector": [
-      {"id": "connector-server-1", "host": "127.0.0.1", "port": 7607, "clientHost": "127.0.0.1", "clientPort": 8807, "frontend": true}
+      {"id": "connector-server-1", "host": "127.0.0.1", "port": 7608, "clientHost": "127.0.0.1", "clientPort": 8808, "frontend": true}
     ],
     "hall": [
-      {"id": "hall-server-1", "host": "127.0.0.1", "port": 7507, "hall": 1}
+      {"id": "hall-server-1", "host": "127.0.0.1", "port": 7508, "hall": 1}
     ],
     "recharge": [
-      {"id": "recharge-server-1", "host": "127.0.0.1", "port": 7407, "recharge": 2}
+      {"id": "recharge-server-1", "host": "127.0.0.1", "port": 7408, "recharge": 2}
     ]
   }
 }
