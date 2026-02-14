@@ -75,6 +75,7 @@ if (app.get('server_status') === Constants.RESERVED.ENV_DEV) {
             heartbeat : 30,
             useDict : true,
             useProtobuf : false,
+            
             // 这个ssl就是增加的部分。
             // ssl: {
             //     type: 'wss',
