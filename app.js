@@ -75,15 +75,14 @@ if (app.get('server_status') === Constants.RESERVED.ENV_DEV) {
             heartbeat : 30,
             useDict : true,
             useProtobuf : false,
-            
             // 这个ssl就是增加的部分。
-            // ssl: {
-            //     type: 'wss',
-            //     key: fs.readFileSync('/etc/letsencrypt/live/coinop.club/privkey.pem'),  // 私钥
-            //     cert: fs.readFileSync('/etc/letsencrypt/live/coinop.club/fullchain.pem')  // 证书
-            //     // key: fs.readFileSync('../shared/server.key'),
-            //     // cert: fs.readFileSync('../shared/server.crt')
-            // },
+            ssl: {
+                type: 'wss',
+                key: fs.readFileSync('/etc/letsencrypt/live/coinop.club/privkey.pem'),  // 私钥
+                cert: fs.readFileSync('/etc/letsencrypt/live/coinop.club/fullchain.pem')  // 证书
+                // key: fs.readFileSync('../shared/server.key'),
+                // cert: fs.readFileSync('../shared/server.crt')
+            },
         });
         app = InitServer.init(app);
     });
